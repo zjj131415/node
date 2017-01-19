@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .circular{
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+    }
+    .circular1{
+      background: red;
+    }
+    .circular2{
+      background: #000;
+    }
+    .circular3{
+      background: #ccc;
+    }
+  </style>
+</head>
+<body>
+  <div class="circular circular1" style="margin-left: 0;"></div>
+  <div class="circular circular2" style="margin-left: 0;"></div>
+  <div class="circular circular3" style="margin-left: 0;"></div>
+  <script>
+    var circular1 = document.querySelector('.circular1');
+    var circular2 = document.querySelector('.circular2');
+    var circular3 = document.querySelector('.circular3');
+    function animete(circular, distenc, callback){
+      setTimeout(function(){
+        var margin_letf = parseInt(circular.style.marginLeft);
+        if(margin_letf === distenc){
+          callback && callback();
+        }else{
+          if(margin_letf < distenc){
+            margin_letf++
+          }else{
+            margin_letf--
+          }
+          circular.style.marginLeft = margin_letf + 'px';
+          animete(circular, distenc, callback)
+        }
+      }, 13)
+    }
+    animete(circular1, 100, function(){
+      animete(circular2, 200, function(){
+        animete(circular3, 200, function(){
+          animete(circular1, 150, function(){
+            animete(circular2, 150, function(){
+              animete(circular3, 150, function(){
+                console.log('sss')
+              })
+            })
+          })
+        })
+      })
+    })
+  </script>
+</body>
+</html>
