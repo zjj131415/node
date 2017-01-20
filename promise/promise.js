@@ -13,4 +13,3 @@ promise(false)
   .then(
     (value) => console.log(value)
   )
-  .

@@ -1,14 +1,13 @@
-let https = require('https');
-let fs = require('fs');
+// curl -k https://localhost:8000/
+const https = require('https');
+const fs = require('fs');
 
-let options = {
-  key: fs.readFileSync('ssh_key.pem'),
-  cert: fs.readFileSync('ssh_cert.pem')
-}
+const options = {
+  key: fs.readFileSync('test/fixtures/keys/agent2-key.pem'),
+  cert: fs.readFileSync('test/fixtures/keys/agent2-cert.pem')
+};
 
-https
-  .createServer(options, (req, res) => {
-    res.writeHead(200);
-    res.end('hello word')
-  })
-  .listen(3000)
+https.createServer(options, (req, res) => {
+  res.writeHead(200);
+  res.end('hello world\n');
+}).listen(8000)
