@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>牛逼闪闪的promise</title>
+  <style>
+    .circular{
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      margin: 5px 0;
+      text-align: center;
+      line-height: 40px;
+      font-size: 30px;
+      color: #000;
+    }
+    .circular1{
+      background: #FF530D;
+    }
+    .circular2{
+      background: #E82C0C;
+    }
+    .circular3{
+      background: #FF0000;
+    }
+    .circular4{
+      background: #E80C7A;
+    }
+    .circular5{
+      background: #FF0DFF;
+    }
+    .circular6{
+      background: #29A1FF;
+    }
+  </style>
+</head>
+<body>
+  <div class="circular circular1" style="margin-left: 0;">1</div>
+  <div class="circular circular2" style="margin-left: 0;">2</div>
+  <div class="circular circular3" style="margin-left: 0;">3</div>
+  <div class="circular circular4" style="margin-left: 0;">4</div>
+  <div class="circular circular5" style="margin-left: 0;">5</div>
+  <div class="circular circular6" style="margin-left: 0;">6</div>
+
+  <script>
+    let circular1 = document.querySelector('.circular1');
+    let circular2 = document.querySelector('.circular2');
+    let circular3 = document.querySelector('.circular3');
+    let circular4 = document.querySelector('.circular4');
+    let circular5 = document.querySelector('.circular5');
+    let circular6 = document.querySelector('.circular6');
+
+    let animetionAction = (circular, distenc) => new Promise((resolve, reject) => {
+      _animete = () => {
+        setTimeout(() => {
+          let margin_left = parseInt(circular.style.marginLeft);
+          if (margin_left === distenc) {
+            resolve();
+          }else {
+            if (margin_left < distenc) {
+              margin_left ++;
+            }else {
+              margin_left --;
+            }
+            circular.style.marginLeft = margin_left + 'px';
+            _animete();
+          }
+        }, 13)
+      }
+      _animete();
+    })
+    animetionAction(circular1, 200)
+      .then((vale) => animetionAction(circular2, 250))
+      .then((vale) => animetionAction(circular3, 300))
+      .then((vale) => animetionAction(circular4, 350))
+      .then((vale) => animetionAction(circular5, 400))
+      .then((vale) => animetionAction(circular6, 450))
+      .then((vale) => animetionAction(circular6, 150))
+      .then((vale) => animetionAction(circular5, 150))
+      .then((vale) => animetionAction(circular4, 150))
+      .then((vale) => animetionAction(circular3, 150))
+      .then((vale) => animetionAction(circular2, 150))
+      .then((vale) => animetionAction(circular1, 150))
+  </script>
+</body>
+</html>
